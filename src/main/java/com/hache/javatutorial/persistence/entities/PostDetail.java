@@ -7,14 +7,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "post_details")
+@Table(name = "details")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PostDetails {
+public class PostDetail {
+
+    /**
+     * Al utilizar MapsId no es necesario asingar ninguna estrategia de asignacion de valor ya que toma el valor del PK
+     * de la entidad principal.
+     */
     @Id
-    private Long idPostDetails;
+    private Long detailId;
+
     private String detailsPost;
 
     /**

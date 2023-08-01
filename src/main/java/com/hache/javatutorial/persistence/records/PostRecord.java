@@ -1,7 +1,7 @@
 package com.hache.javatutorial.persistence.records;
 
 public record PostRecord(
-        Long idPost,
+        Long postId,
         String title,
         String msgPost
 ) {}

@@ -9,16 +9,17 @@ import lombok.NoArgsConstructor;
 import java.util.Objects;
 
 @Entity
-@Table(name = "post_commets")
+@Table(name = "commets")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PostComments {
+public class PostComment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idPostComment;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "comment_seq")
+    @SequenceGenerator(name = "comment_seq", sequenceName = "comment_seq", allocationSize = 1)
+    private Long commentId;
 
     private String review;
 
@@ -38,14 +39,13 @@ public class PostComments {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof PostComments that)) return false;
-        return Objects.equals(idPostComment, that.idPostComment) &&
-                Objects.equals(review, that.review) &&
-                Objects.equals(post, that.post);
+        if (!(o instanceof PostComment that)) return false;
+        //Con el identificador es suficiente para identificar el comentario.
+        return Objects.equals(commentId, that.commentId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idPostComment, review, post);
+        return Objects.hash(commentId);
     }
 }

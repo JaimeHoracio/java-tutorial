@@ -13,9 +13,9 @@ import java.util.Optional;
 public interface PostRepository extends JpaRepository<Post, Long> {
 
     @Query("""
-            SELECT new com.hache.javatutorial.persistence.records.PostRecord(idPost, title, msgPost)
+            SELECT new com.hache.javatutorial.persistence.records.PostRecord(postId, title, msgPost)
             FROM Post p
-            WHERE p.idPost = :id_post
+            WHERE p.postId = :id_post
             """)
     Optional<PostRecord> findBasicPost(@Param("id_post") Long idPost);
 
@@ -23,7 +23,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
             SELECT p
             FROM Post p
             LEFT JOIN FETCH p.details details
-            WHERE p.idPost = :id_post
+            WHERE p.postId = :id_post
             """)
     Optional<Post> findFullPost(@Param("id_post") Long idPost);
 }
